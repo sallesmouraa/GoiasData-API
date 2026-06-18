@@ -1,6 +1,6 @@
 # GoiasData-API
 
-API RESTful desenvolvida em **FastAPI** para consulta de dados socioeconômicos, demográficos e de trabalho do estado de Goiás, estruturados em um banco **SQLite**.
+API RESTful construída com **FastAPI** para disponibilizar, de forma rápida e padronizada, dados socioeconômicos, demográficos e do mercado de trabalho do estado de Goiás. As informações foram extraídas, tratadas e estruturadas a partir de 95 planilhas, sendo consolidadas em um banco **SQLite** para consultas eficientes, integração com aplicações externas e apoio a análises e tomada de decisão.
 
 ## Visão geral
 
