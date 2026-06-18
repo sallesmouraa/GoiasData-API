@@ -109,8 +109,15 @@ Para executar os testes:
 pytest
 ```
 
+Atualmente há cobertura inicial para:
+- endpoint raiz;
+- healthcheck;
+- listagem de tabelas;
+- erro 404 para tabela inexistente.
+
 ## Observações
 
 - O banco SQLite permanece versionado no repositório como fonte local de dados.
 - Esta implementação é uma base inicial e pode evoluir para filtros, paginação, versionamento mais rico e endpoints analíticos específicos.
+- A validação do nome das tabelas foi endurecida para aceitar apenas tabelas realmente existentes no banco.
 - Dependendo do schema real do banco, pode ser necessário refinamento adicional nos endpoints para nomes de tabelas e colunas mais amigáveis.
