@@ -1,17 +1,17 @@
-# GoiasData-API
+# GoiásData API
 
-API RESTful construída com **FastAPI** para disponibilizar, de forma rápida e padronizada, dados socioeconômicos, demográficos e do mercado de trabalho do estado de Goiás. As informações foram extraídas, tratadas e estruturadas a partir de 95 planilhas, sendo consolidadas em um banco **SQLite** para consultas eficientes, integração com aplicações externas e apoio a análises e tomada de decisão.
+API RESTful desenvolvida com **FastAPI** para disponibilizar, de forma rápida e padronizada, dados socioeconômicos, demográficos e do mercado de trabalho do estado de Goiás.
+
+As informações são estruturadas a partir de planilhas e consolidadas no arquivo **`GoiasData_Database.sqlite`**.
 
 ## Visão geral
 
-O projeto utiliza o arquivo `GoiasData_Database.sqlite` como fonte de dados local e expõe endpoints HTTP para exploração inicial das tabelas disponíveis.
+O projeto expõe endpoints HTTP para exploração inicial das tabelas disponíveis no banco SQLite, permitindo:
 
-Nesta primeira estruturação, o foco foi criar uma base simples e funcional para permitir:
-- subir a API localmente;
 - validar a saúde da aplicação;
-- listar tabelas do banco;
+- listar tabelas disponíveis;
 - inspecionar colunas;
-- consultar registros iniciais.
+- consultar registros com limite configurável.
 
 ## Stack
 
@@ -48,7 +48,14 @@ README.md
 
 ## Como executar localmente
 
-### 1. Criar e ativar ambiente virtual
+### 1) Clonar o repositório
+
+```bash
+git clone https://github.com/sallesmouraa/GoiasData-API.git
+cd GoiasData-API
+```
+
+### 2) Criar e ativar ambiente virtual
 
 No Linux/macOS:
 
@@ -57,41 +64,45 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-No Windows:
+No Windows (PowerShell):
 
-```bash
+```powershell
 python -m venv .venv
 .venv\Scripts\activate
 ```
 
-### 2. Instalar dependências
+### 3) Instalar dependências
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Executar a API
+### 4) Executar a API
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
 A aplicação ficará disponível em:
+
 - API: `http://127.0.0.1:8000`
 - Swagger UI: `http://127.0.0.1:8000/docs`
 - OpenAPI JSON: `http://127.0.0.1:8000/openapi.json`
 
-## Endpoints iniciais
+## Endpoints disponíveis
 
 ### Health
+
 - `GET /health`
   - Verifica se a aplicação está em execução.
 
 ### Root
+
 - `GET /`
   - Retorna mensagem inicial e atalhos para documentação.
 
 ### Dados
+
 - `GET /api/v1/dados/tabelas`
   - Lista as tabelas disponíveis no banco SQLite.
 
@@ -101,6 +112,13 @@ A aplicação ficará disponível em:
 - `GET /api/v1/dados/tabelas/{table_name}/registros?limit=10`
   - Retorna registros de uma tabela, com limite configurável entre 1 e 100.
 
+## Exemplo de uso com curl
+
+```bash
+curl -X GET "http://127.0.0.1:8000/api/v1/dados/tabelas" \
+  -H "accept: application/json"
+```
+
 ## Testes
 
 Para executar os testes:
@@ -109,15 +127,41 @@ Para executar os testes:
 pytest
 ```
 
-Atualmente há cobertura inicial para:
+Cobertura inicial:
+
 - endpoint raiz;
 - healthcheck;
 - listagem de tabelas;
 - erro 404 para tabela inexistente.
 
-## Observações
+## Fonte e atualização dos dados
 
-- O banco SQLite permanece versionado no repositório como fonte local de dados.
-- Esta implementação é uma base inicial e pode evoluir para filtros, paginação, versionamento mais rico e endpoints analíticos específicos.
-- A validação do nome das tabelas foi endurecida para aceitar apenas tabelas realmente existentes no banco.
-- Dependendo do schema real do banco, pode ser necessário refinamento adicional nos endpoints para nomes de tabelas e colunas mais amigáveis.
+Para evolução do projeto, recomenda-se manter documentado:
+
+- origem de cada conjunto de dados (órgão/fonte);
+- data da última atualização;
+- periodicidade de atualização;
+- transformações aplicadas na carga.
+
+## Boas práticas para evolução
+
+- adicionar filtros e paginação por endpoint;
+- ampliar validações e tratamento de erros;
+- incrementar cobertura de testes;
+- configurar CI com lint + testes.
+
+## Contribuição
+
+Contribuições são bem-vindas.
+
+Fluxo sugerido:
+
+1. Faça um fork do projeto
+2. Crie uma branch (`feat/minha-melhoria`)
+3. Commit das alterações (`git commit -m "docs: melhora README"`)
+4. Push da branch
+5. Abra um Pull Request
+
+## Licença
+
+Defina aqui a licença do projeto (ex.: MIT) para esclarecer regras de uso e redistribuição.
