@@ -44,6 +44,7 @@ tests/
 requirements.txt
 GoiasData_Database.sqlite
 README.md
+LICENSE
 ```
 
 ## Como executar localmente
@@ -164,4 +165,6 @@ Fluxo sugerido:
 
 ## Licença
 
-Defina aqui a licença do projeto (ex.: MIT) para esclarecer regras de uso e redistribuição.
+Este projeto está licenciado sob os termos da **MIT License**.
+
+Consulte o arquivo [LICENSE](./LICENSE) para mais detalhes.
